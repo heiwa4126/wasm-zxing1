@@ -1,5 +1,5 @@
 {
-	"name": "wasm-zxying1",
+	"name": "wasm-zxing1",
 	"module": "index.ts",
 	"type": "module",
 	"devDependencies": {
@@ -12,5 +12,8 @@
 		"format": "biome format --write .",
 		"lint": "biome lint .",
 		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"zxing-wasm": "^1.2.12"
 	}
 }
