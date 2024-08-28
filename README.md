@@ -2,6 +2,8 @@
 
 [Sec-ant/zxing-wasm: ZXing-C++ WebAssembly as an ES/CJS module with types. Read/Write barcodes in web, node, bun and deno.](https://github.com/Sec-ant/zxing-wasm) の実験。
 
+とりあえず CLI で始めて見る。 Bun で TypeScript。
+
 ## 開発
 
 To install dependencies:
