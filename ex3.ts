@@ -26,12 +26,13 @@ const imageFile = await loadFileAsBlob("./examples/qr2.jpg");
 const results = await readBarcodesFromImageFile(imageFile, readerOptions);
 
 const s1 = sharp(Buffer.from(await imageFile.arrayBuffer()));
-const { width, height } = await s1.metadata();
-const draw = SVG().size(width, height);
+// const { width, height } = await s1.metadata();
+// const draw = SVG().size(width, height);
 // draw
 // 	.circle(50)
 // 	.fill("#f00")
 // 	.center(width / 2, height / 2);
+const draw = SVG();
 
 results.forEach((result, index) => {
 	console.log(`${index + 1}: ${result.text}`);
