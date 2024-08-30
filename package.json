@@ -4,7 +4,8 @@
 	"type": "module",
 	"devDependencies": {
 		"@types/bun": "latest",
-		"@types/node": "^22.5.1"
+		"@types/node": "^22.5.1",
+		"@types/svgdom": "^0.1.2"
 	},
 	"peerDependencies": {
 		"typescript": "^5.5.4"
@@ -15,6 +16,9 @@
 		"check": "biome check --write ."
 	},
 	"dependencies": {
+		"@svgdotjs/svg.js": "^3.2.4",
+		"sharp": "^0.33.5",
+		"svgdom": "^0.1.19",
 		"zxing-wasm": "^1.2.12"
 	}
 }
