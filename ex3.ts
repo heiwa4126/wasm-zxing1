@@ -22,7 +22,7 @@ const window = createSVGWindow();
 const document = window.document;
 registerWindow(window, document);
 
-const imageFile = await loadFileAsBlob("./examples/qr2.jpg");
+const imageFile = await loadFileAsBlob("./examples/qr3.jpg");
 const results = await readBarcodesFromImageFile(imageFile, readerOptions);
 
 const s1 = sharp(Buffer.from(await imageFile.arrayBuffer()));
@@ -43,7 +43,7 @@ results.forEach((result, index) => {
 	draw.path(pathData).fill("none").stroke({ color: "#a00a", width: 10 });
 	const centerX = (p.topLeft.x + p.topRight.x + p.bottomRight.x + p.bottomLeft.x) / 4;
 	const centerY = (p.topLeft.y + p.topRight.y + p.bottomRight.y + p.bottomLeft.y) / 4;
-	draw
+	const text = draw
 		.text(result.text)
 		.font({
 			family: "Consolas, Menlo, monospace",
@@ -51,9 +51,15 @@ results.forEach((result, index) => {
 			anchor: "middle",
 			leading: "2.0em",
 		})
-		.fill("#0f0")
+		.fill("#000")
 		.cx(centerX)
 		.cy(centerY);
+	const bbox = text.bbox();
+	const background = draw
+		.rect(bbox.width + 30, bbox.height + 10)
+		.fill("#fffe")
+		.move(bbox.x - 15, bbox.y - 5);
+	text.before(background);
 });
 
 s1.composite([{ input: Buffer.from(draw.svg()), top: 0, left: 0 }])
