@@ -6,10 +6,10 @@ import { createSVGWindow } from "svgdom";
 
 const width = 320;
 const height = 180;
-const diameter = 80;
+const diameter = 100;
 const radius = diameter / 2;
 const jpegOpt = {
-	quality: 75,
+	quality: 85,
 	progressive: true,
 	force: false,
 };
@@ -26,7 +26,7 @@ sharp({
 	if (err) {
 		console.error(err);
 	} else {
-		console.log("Image created successfully");
+		console.log("ex1: Image created successfully.");
 		console.log(info);
 	}
 });
@@ -44,11 +44,7 @@ const svg = `
 </svg>
 `;
 s2.composite([{ input: Buffer.from(svg), top: 0, left: 0 }])
-	.jpeg({
-		quality: 75,
-		progressive: true,
-		force: false,
-	})
+	.jpeg(jpegOpt)
 	.toFile("tmp/s1-2.jpg");
 
 //==== ex3 : svgをラップする
@@ -59,6 +55,30 @@ draw
 	.fill("#f00")
 	.center(width / 2, height / 2);
 
-// console.log(draw.svg());
+draw
+	.text("Hello, SVG.js!")
+	.font({
+		family: "Arial",
+		size: 45,
+		anchor: "middle",
+		leading: "1.5em",
+	})
+	.fill("#00f")
+	.cx(width / 2)
+	.cy(height / 2);
+
+draw // monospace test
+	.text("monospace font")
+	.font({
+		family: "Consolas, Menlo, monospace",
+		size: 30,
+		anchor: "middle",
+		leading: "1.0em",
+	})
+	.fill("#fff")
+	.cx(width / 2)
+	.cy(height / 2 + 36);
+
+console.log(draw.svg());
 
 sharp(Buffer.from(draw.svg())).jpeg(jpegOpt).toFile("tmp/s1-3.jpg");
