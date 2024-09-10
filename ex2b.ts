@@ -15,4 +15,6 @@ const results = await readBarcodesFromImageFile(imageFile, readerOptions);
 
 results.forEach((result, index) => {
 	console.log(`${index + 1}: ${result.text}`);
+
+	console.log({ position: result.position });
 });
